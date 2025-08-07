@@ -2,16 +2,32 @@ from time import sleep
 from machine import Pin, PWM
 from servo import Servo
 
-servo_pwm = PWM(Pin(16))
-my_servo = Servo(pwm=servo_pwm)
-
 class Wheels():
     def __init__(self, lwheel, rwheel, debug=True):
         self.__debug = debug
         self.__lwheel = lwheel
         self.__rwheel = rwheel
-    def forward(self):
+    def slowforward(self):
+        self.__lwheel.set_duty(1300)
+        self.__rwheel.set_duty(1700)
+    def medforward(self):
+        self.__lwheel.set_duty(1150)
+        self.__rwheel.set_duty(1850)
+    def fastforward(self):
         self.__lwheel.set_duty(1000)
         self.__rwheel.set_duty(2000)
-        if self.__debug:
-            print('this wont print but put on OLED eventually')
+    def slowback(self):
+        self.__lwheel.set_duty(1700)
+        self.__rwheel.set_duty(1300)
+    def medback(self):
+        self.__lwheel.set_duty(1850)
+        self.__rwheel.set_duty(1150)
+    def fastback(self):
+        self.__lwheel.set_duty(2000)
+        self.__rwheel.set_duty(1000)
+    def rightturn(self):
+        self.__lwheel.set_duty(1800)
+        self.__rwheel.set_duty(1800)
+    def leftturn(self):
+        self.__lwheel.set_duty(1200)
+        self.__rwheel.set_duty(1200)
