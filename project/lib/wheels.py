@@ -7,6 +7,9 @@ class Wheels():
         self.__debug = debug
         self.__lwheel = lwheel
         self.__rwheel = rwheel
+    def stop(self):
+        self.__lwheel.set_duty(1500)
+        self.__rwheel.set_duty(1500)
     def slowforward(self):
         self.__lwheel.set_duty(1700)
         self.__rwheel.set_duty(1300)
@@ -25,9 +28,9 @@ class Wheels():
     def fastback(self):
         self.__lwheel.set_duty(1000)
         self.__rwheel.set_duty(2000)
-    def rightturn(self):
+    def leftturn(self):
         self.__lwheel.set_duty(1200)
         self.__rwheel.set_duty(1200)
-    def leftturn(self):
+    def rightturn(self):
         self.__lwheel.set_duty(1800)
         self.__rwheel.set_duty(1800)

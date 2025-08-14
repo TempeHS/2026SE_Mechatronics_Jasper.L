@@ -31,12 +31,29 @@ class Controller():
         self.__reading = ReadingSubsystem(sensora, sensorb, colour, True)
         self.__display = Display(display, True)
     def set_idle_state(self):
+        self.__wheels.stop()
+    def set_fast_state(self):
+        self.__wheels.fastforward()
+    def set_med_state(self):
         self.__wheels.medforward()
+    def set_slow_state(self):
+        self.__wheels.slowforward()
     def set_rturn_state(self):
         self.__wheels.rightturn()
     def set_lturn_state(self):
         self.__wheels.leftturn()
+        sleep_ms(1500)
 
     def update(self):
         print('running')
         self.__display.showtext((self.__reading.get_rangea(), self.__reading.get_rangeb()), self.__reading.get_colour())
+        if self.__reading.get_rangea() > 250:
+            self.set_fast_state()
+        elif 150 < self.__reading.get_rangea() < 250:
+            self.set_med_state()
+        elif 100 < self.__reading.get_rangea() < 150:
+            self.set_slow_state()
+        elif self.__reading.get_rangea() < 100:
+            self.set_lturn_state()
+        else:
+            self.set_idle_state()
