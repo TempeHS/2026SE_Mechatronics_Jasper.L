@@ -8,7 +8,7 @@ from colour import Colour
 from PiicoDev_VEML6040 import PiicoDev_VEML6040
 from PiicoDev_SSD1306 import *
 
-
+# subsystem for reading all sensors
 class ReadingSubsystem():
     def __init__(self, sensora, sensorb, colour, debug):
         self.__debug  = debug
@@ -26,6 +26,7 @@ class ReadingSubsystem():
 
 class Controller():
     def __init__(self, lwheel, rwheel, sensora, sensorb, colour, display, debug):
+        # initialise sensors and such into classes
         self.__debug = debug
         self.__wheels = Wheels(lwheel, rwheel, True)
         self.__reading = ReadingSubsystem(sensora, sensorb, colour, True)
@@ -40,13 +41,19 @@ class Controller():
         self.__wheels.slowforward()
     def set_rturn_state(self):
         self.__wheels.rightturn()
+        sleep_ms(800)
+        self.__wheels.stop()
     def set_lturn_state(self):
         self.__wheels.leftturn()
-        sleep_ms(1500)
-
+        sleep_ms(930)
+        self.__wheels.stop()
+    # main update loop aka state machine
     def update(self):
         print('running')
         self.__display.showtext((self.__reading.get_rangea(), self.__reading.get_rangeb()), self.__reading.get_colour())
+        if self.__reading.get_colour() == 'green':
+            self.set_idle_state()
+            sleep_ms(5000)
         if self.__reading.get_rangea() > 250:
             self.set_fast_state()
         elif 150 < self.__reading.get_rangea() < 250:
@@ -54,6 +61,9 @@ class Controller():
         elif 100 < self.__reading.get_rangea() < 150:
             self.set_slow_state()
         elif self.__reading.get_rangea() < 100:
-            self.set_lturn_state()
+            if self.__reading.get_rangeb() < 87:
+                self.set_lturn_state()
+            else:
+                self.set_rturn_state()
         else:
             self.set_idle_state()
