@@ -1,12 +1,8 @@
-import time
+from time import sleep, time
 from wheels import Wheels
 from display import Display
-from PiicoDev_Ultrasonic import PiicoDev_Ultrasonic
 from PiicoDev_Unified import sleep_ms
-from machine import Pin, PWM
 from colour import Colour
-from PiicoDev_VEML6040 import PiicoDev_VEML6040
-from PiicoDev_SSD1306 import *
 
 # subsystem for reading all sensors
 class ReadingSubsystem():
@@ -20,9 +16,7 @@ class ReadingSubsystem():
     def get_rangeb(self):
         return(self.__sensorb.distance_mm)
     def get_colour(self):
-        return(
-            self.__colour.readcolour()
-        )
+        return(self.__colour.readcolour())
 
 class Controller():
     def __init__(self, lwheel, rwheel, sensora, sensorb, colour, display, debug):
@@ -53,7 +47,10 @@ class Controller():
         self.__display.showtext((self.__reading.get_rangea(), self.__reading.get_rangeb()), self.__reading.get_colour())
         if self.__reading.get_colour() == 'green':
             self.set_idle_state()
-            sleep_ms(5000)
+            self.__display.showtext('YIPPIEEEEEE', self.__reading.get_colour())
+            sleep_ms(2000)
+            self.set_med_state()
+            sleep_ms(2000)
         if self.__reading.get_rangea() > 250:
             self.set_fast_state()
         elif 150 < self.__reading.get_rangea() < 250:
