@@ -60,7 +60,7 @@ class Controller():
         elif 80 < self.__reading.get_rangea() < 120:
             self.set_slow_state()
         elif self.__reading.get_rangea() < 80:
-            if self.__reading.get_rangeb() < 43:
+            if self.__reading.get_rangeb() < 87:
                 self.set_lturn_state()
             else:
                 self.set_rturn_state()
