@@ -37,10 +37,12 @@ class Controller():
         self.__wheels.rightturn()
         sleep_ms(800)
         self.__wheels.stop()
+        sleep_ms(200)
     def set_lturn_state(self):
         self.__wheels.leftturn()
         sleep_ms(930)
         self.__wheels.stop()
+        sleep_ms(200)
     # main update loop aka state machine
     def update(self):
         print('running')
@@ -51,14 +53,14 @@ class Controller():
             sleep_ms(2000)
             self.set_med_state()
             sleep_ms(2000)
-        if self.__reading.get_rangea() > 250:
+        if self.__reading.get_rangea() > 200:
             self.set_fast_state()
-        elif 150 < self.__reading.get_rangea() < 250:
+        elif 120 < self.__reading.get_rangea() < 200:
             self.set_med_state()
-        elif 100 < self.__reading.get_rangea() < 150:
+        elif 80 < self.__reading.get_rangea() < 120:
             self.set_slow_state()
-        elif self.__reading.get_rangea() < 100:
-            if self.__reading.get_rangeb() < 87:
+        elif self.__reading.get_rangea() < 80:
+            if self.__reading.get_rangeb() < 43:
                 self.set_lturn_state()
             else:
                 self.set_rturn_state()
