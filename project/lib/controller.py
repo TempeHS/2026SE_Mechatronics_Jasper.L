@@ -1,8 +1,8 @@
-from time import sleep, time
 from wheels import Wheels
 from display import Display
 from PiicoDev_Unified import sleep_ms
 from colour import Colour
+import random
 
 # subsystem for reading all sensors
 class ReadingSubsystem():
@@ -35,12 +35,12 @@ class Controller():
         self.__wheels.slowforward()
     def set_rturn_state(self):
         self.__wheels.rightturn()
-        sleep_ms(800)
+        sleep_ms(random.randint(770, 820))
         self.__wheels.stop()
         sleep_ms(200)
     def set_lturn_state(self):
         self.__wheels.leftturn()
-        sleep_ms(930)
+        sleep_ms(random.randint(900, 950))
         self.__wheels.stop()
         sleep_ms(200)
     # main update loop aka state machine
