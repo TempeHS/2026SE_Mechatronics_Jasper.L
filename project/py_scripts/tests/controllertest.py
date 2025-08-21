@@ -1,4 +1,3 @@
-import time
 from PiicoDev_Ultrasonic import PiicoDev_Ultrasonic
 from PiicoDev_Unified import sleep_ms
 from servo import Servo
@@ -17,4 +16,21 @@ display = create_PiicoDev_SSD1306()
 controls = Controller(lefwheel, rihwheel, range_a, range_b, csensor, display, True)
 
 while True:
-    controls.update()
+    controls.set_idle_state()
+    print('Pass if: wheels not moving')
+    sleep_ms(5000)
+    controls.set_fast_state()
+    print('Pass if: wheels moving fast')
+    sleep_ms(5000)
+    controls.set_med_state()
+    print('Pass if: wheels moving at a decent speed')
+    sleep_ms(5000)
+    controls.set_slow_state()
+    print('Pass if: wheels moving slowly')
+    sleep_ms(5000)
+    controls.set_rturn_state()
+    print('Pass if: robot turns right and pauses for about 0.2 seconds')
+    sleep_ms(5000)
+    controls.set_lturn_state()
+    print('Pass if: robot turns left and pauses for about 0.2 seconds')
+    sleep_ms(5000)
