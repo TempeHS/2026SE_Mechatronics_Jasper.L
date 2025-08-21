@@ -28,8 +28,10 @@ class ReadingSubsystem():
         self.__sensorb = sensorb
         self.__colour = Colour(colour, True)
     def get_rangea(self):
+        # get range from front sensor
         return(self.__sensora.distance_mm)
     def get_rangeb(self):
+        # get range from right sensor
         return(self.__sensorb.distance_mm)
     def get_colour(self):
         return(self.__colour.readcolour())

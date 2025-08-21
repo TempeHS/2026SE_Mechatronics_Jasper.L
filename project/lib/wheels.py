@@ -1,7 +1,3 @@
-from time import sleep
-from machine import Pin, PWM
-from servo import Servo
-
 class Wheels():
     def __init__(self, lwheel, rwheel, debug=True):
         self.__debug = debug
