@@ -9,6 +9,7 @@ lefwheel = Servo(pwm=PWM(Pin(16)))
 wheels = Wheels(lefwheel, rihwheel, True)
 
 while True:
+    # checking all of the functions of the wheels
     wheels.slowforward()
     sleep(2)
     wheels.medforward()

@@ -8,6 +8,7 @@ colours = Colour(csensor, True)
 display = create_PiicoDev_SSD1306()
 
 while True:
+    # shows the colour sensor data on the OLED screen
     display.fill(0)
     display.text(str(colours.readcolour()), 30, 20, 1)
     display.show()
