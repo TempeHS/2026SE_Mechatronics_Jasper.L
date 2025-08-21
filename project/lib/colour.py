@@ -7,8 +7,9 @@ class Colour():
     def readcolour(self):
         if self.__debug:
             print('reading')
-        data = self.__sensor.readHSV() # Read the sensor (Colour space: Hue Saturation Value)
+        data = self.__sensor.readHSV() # Read the sensor
         hue = data['hue']
+        # we only need if green or not so that is what is returned
         if 75 < hue < 90:
             return 'green'
         else:
