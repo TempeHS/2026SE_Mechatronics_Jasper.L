@@ -6,4 +6,4 @@ display = create_PiicoDev_SSD1306()
 oled = Display(display, True)
 
 while True:
-    oled.showtext('testing')
+    oled.showtext('testing', 'test')
