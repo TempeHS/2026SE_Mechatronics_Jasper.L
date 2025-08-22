@@ -12,7 +12,7 @@ from PiicoDev_VEML6040 import PiicoDev_VEML6040
 from PiicoDev_SSD1306 import *
 
 range_a = PiicoDev_Ultrasonic(id=[0, 0, 0, 0])
-range_b = PiicoDev_Ultrasonic(id=[0, 0, 0, 1]) 
+range_b = PiicoDev_Ultrasonic(id=[1, 0, 0, 0]) 
 csensor = PiicoDev_VEML6040()
 rihwheel = Servo(pwm=PWM(Pin(15)))
 lefwheel = Servo(pwm=PWM(Pin(16)))
