@@ -88,13 +88,13 @@ class Controller():
         elif self.__reading.get_rangea() < 80:
             # when within 80mm of a wall in front look for a wall to the right and turn accordingly
             if self.__reading.get_rangeb() < 87:
-                self.set_lturn_state()
-            else:
                 self.set_rturn_state()
+            else:
+                self.set_lturn_state()
         else:
             # stop robot in case of error
             self.set_idle_state()
-            self.__dislay.showtext('error', 'error')
+            self.__display.showtext('error', 'error')
 
 while True:
     controls.update()
