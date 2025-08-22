@@ -6,7 +6,6 @@ import random
 from PiicoDev_Ultrasonic import PiicoDev_Ultrasonic
 from PiicoDev_Unified import sleep_ms
 from servo import Servo
-from controller import Controller
 from machine import Pin, PWM
 from PiicoDev_VEML6040 import PiicoDev_VEML6040
 from PiicoDev_SSD1306 import *
